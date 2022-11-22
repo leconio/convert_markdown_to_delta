@@ -16,6 +16,9 @@ permissions:
 jobs:
 
   publish-page:
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +27,7 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - name: Deploy React to GitHub Pages
+        id: build-publish
         uses: bitovi/github-actions-react-to-ghp@v1.2.0
         with:
             path: build
