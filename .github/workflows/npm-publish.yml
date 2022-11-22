@@ -6,20 +6,16 @@ name: Node.js Package
 on:
   push:
     branches: [ "main" ]
+    
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
-      - run: npm test
 
-  publish-npm:
-    needs: build
+  publish-page:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
